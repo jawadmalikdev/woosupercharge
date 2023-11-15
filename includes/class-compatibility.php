@@ -92,12 +92,12 @@ if ( ! class_exists( 'WooSupercharge_Compatibility' ) ) {
 			$compatible_php_version = $this->min_php_version;
 			$compatible_wp_version  = $this->min_wp_version;
 
-			if ( $this->is_php_compatible() ) {
+			if ( ! $this->is_php_compatible() ) {
 				deactivate_plugins( $plugin );
 				wp_die(
 					sprintf( esc_html__( 'Sorry, but your current version of PHP does not meet the minimum required version %1$s%2$s%3$s or newer to run WooSupercharge properly. For information on how to upgrade your PHP version, contact your web host. %4$sClick here to return to the Dashboard%5$s.', 'wpsupercharge' ),
 						'<strong>',
-						$compatible_php_versioon, // phpcs:ignore
+						$compatible_php_version, // phpcs:ignore
 						'</strong>',
 						'<a target="_blank" href="' . esc_url($url) . '">',
 						'</a>'
