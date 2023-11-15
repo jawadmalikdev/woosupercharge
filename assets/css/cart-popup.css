@@ -1,0 +1,78 @@
+.woosupercharge-modal.top {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.woosupercharge-modal.bottom {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.woosupercharge-modal-container {
+  background-color: #fefefe;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.woosupercharge-modal-content-container {
+  background-position: center;
+}
+
+.woosupercharge-modal-content-container h2, .woosupercharge-modal-content-container h6, .woosupercharge-modal-content-container p {
+  margin-left: 15px;
+}
+
+.woosupercharge-modal-close {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Two-column layout */
+.woosupercharge-modal-body {
+  display: flex;
+}
+
+.woosupercharge-modal-image {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.woosupercharge-modal-image img {
+  width: 100%;
+  height: auto;
+}
+
+.woosupercharge-modal-details {
+  flex: 1;
+  margin: 0;
+}
+
+.view-cart-btn {
+  display: block;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.view-cart-btn:hover {
+  background-color: #0056b3;
+}

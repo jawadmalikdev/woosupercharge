@@ -1,0 +1,41 @@
+.image-select label {
+    cursor: pointer;
+}
+
+.position-options-container {
+    width: max-content;
+    outline: 2px solid rgb(36, 36, 36);
+}
+
+#positionSelect {
+    height: 40px;
+    display: flex;
+    outline: 2px solid rgb(60, 60, 60);
+    max-width: fit-content;
+}
+
+#positionSelect label {
+    border: none;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+}
+
+#positionSelect label.active {
+    background-color: blue;
+    color: white;
+}
+
+#positionSelect input{
+
+    display: none;
+
+}
+
+.woosupercharge-rmv-condition{
+    cursor: pointer;
+}
+
+.position-options-container .active{
+    background-color: blue;
+    color: white;
+}
