@@ -1,0 +1,84 @@
+# Copyright (C) 2023 WooSupercharge
+# This file is distributed under the same license as the WooSupercharge package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooSupercharge 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woosupercharge\n"
+"POT-Creation-Date: 2023-11-15 20:43:18+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: includes/class-compatibility.php:98
+msgid "Sorry, but your current version of PHP does not meet the minimum required version %1$s%2$s%3$s or newer to run WooSupercharge properly. For information on how to upgrade your PHP version, contact your web host. %4$sClick here to return to the Dashboard%5$s."
+msgstr ""
+
+#: includes/class-compatibility.php:112
+msgid "Sorry, but your WordPress version is not %1$s%2$s%3$s or newer. Please update your WordPress version and then activate WooSupercharge. For help on how to update your WordPress %4$sclick here%5$s."
+msgstr ""
+
+#: includes/class-compatibility.php:138
+msgid " Your current version of PHP does not meet the minimum required version %1$s%2$s%3$s or newer to run WooSupercharge properly. For information on how to upgrade your PHP version, contact your web host."
+msgstr ""
+
+#: includes/class-compatibility.php:164
+msgid "Your WordPress version is not %1$s%2$s%3$s or newer. Please update your WordPress version and then activate WooSupercharge."
+msgstr ""
+
+#: includes/class-settings.php:48
+msgid "WooSupercharge General Settings"
+msgstr ""
+
+#: includes/class-settings.php:55
+msgid "WooSupercharge Display Conditions Settings"
+msgstr ""
+
+#: includes/class-settings.php:69
+msgid "This section controls the General Settings for the popup."
+msgstr ""
+
+#: includes/class-settings.php:78
+msgid "This section controls the Display Settings for the popup. Add the pages where you want the popup to appear."
+msgstr ""
+
+#: includes/class-settings.php:96
+msgid "Layout"
+msgstr ""
+
+#: includes/class-settings.php:102
+msgid "POSITION"
+msgstr ""
+
+#: includes/class-settings.php:108
+msgid "CLOSE AFTER (SECONDS)"
+msgstr ""
+
+#: includes/class-settings.php:116
+msgid "Display Conditions"
+msgstr ""
+
+#: templates/product-card.php:25
+msgid "Added to Cart"
+msgstr ""
+
+#: woosupercharge.php:215
+msgid "Not allowed to clone!"
+msgstr ""
+
+#: woosupercharge.php:228
+msgid "unserialization is not allowed!"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "WooSupercharge"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "WooSupercharge is a powerful WooCommerce plugin that enhances your online store with advanced display features. It's designed to provide a seamless and dynamic user experience by incorporating a add to cart notification popup and a custom Gutenberg block for showcasing the latest products."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Jawad Malik"
+msgstr ""
