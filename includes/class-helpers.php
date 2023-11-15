@@ -41,23 +41,30 @@ if ( ! class_exists( 'WooSupercharge_Helpers' ) ) {
 		 * @param array $display_conditions An array of display conditions.
 		 * @return bool True if the cart popup should be displayed, false otherwise.
 		 */
-		public static function display_cart_popup( $display_conditions ) {			
+		public static function display_cart_popup( $display_conditions ) {
+
+			$conditions_array = array();
 
 			foreach ( $display_conditions as $index => $condition ) {
-				switch ( $condition ) {
-					case 'all':
-						return true;
-					case 'archive':
-						return function_exists( 'is_shop' ) && is_shop();
-					case 'categories-archive':
-						return is_tax( 'product_cat' );
-					case 'tags-archive':
-						return is_tax( 'product_tag' );
-					case 'product-attributes-archive':
-						return is_tax( 'product_attribute' );
-					case 'single':
-						return is_singular( 'product' );
-				}
+				$conditions_array[$condition] = $condition;
+			}
+
+			if( isset( $conditions_array['all'] ) ) return true;
+
+			if( isset( $conditions_array['archive'] ) && function_exists( 'is_shop' ) && is_shop() ) {
+				return true;
+			}
+			if( isset( $conditions_array['categories-archive'] ) && is_tax('product_cat') ) {
+				return true;
+			}
+			if( isset( $conditions_array['tags-archive'] ) && is_tax('product_tag') ) {
+				return true;
+			}
+			if( isset( $conditions_array['product-attributes-archive'] ) && is_tax('product_attribute') ) {
+				return true;
+			}
+			if( isset( $conditions_array['single'] ) && is_singular('product') ) {
+				return true;
 			}
 
 			return false;
