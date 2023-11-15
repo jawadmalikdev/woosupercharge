@@ -28,6 +28,14 @@ if ( ! class_exists( 'WooSupercharge_Cart' ) ) {
 		public function __construct() {
 			$this->hooks();
 			$this->settings = WooSupercharge_Helpers::get_woosupercharge_settings();
+
+			/**
+			 * After testing thoroughly i found that 
+			 * in block theme when using blocks to show
+			 * the products the jquery events added_to_cart is not triggered
+			 * so we are going to load the below assets and trigger that event
+			 * ourselves with the needed information.
+			 */
 			if ( wp_is_block_theme() ) {
 				$this->block_based_themes_hooks();
 			}
