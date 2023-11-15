@@ -75,8 +75,8 @@ if ( ! class_exists( 'WooSupercharge_Settings' ) ) {
 		public function display_conditions_settings_callback(){
 			echo sprintf(
 				'<p>%s</p>',
-				esc_html__(
-					'This section controls the Display Settings for the popup. Add the pages where you want the popup to appear.',
+				__(
+					'This section controls the Display Settings for the popup.<br/> Add the pages where you want the popup to appear.<br/> If left empty the default condition is all pages.',
 					'woosupercharge'
 				)
 			);
