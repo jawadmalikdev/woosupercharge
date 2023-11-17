@@ -111,9 +111,9 @@ if ( ! class_exists( 'WooSupercharge_Helpers' ) ) {
 			ob_start();
 			?>
 				<div class="position-select-container" id="positionSelect">
-					<label for="positionTop" <?php self::active( $value, 'top' ); ?> >Top</label>
+					<label for="positionTop" <?php self::active( $value, 'top' ); ?> ><?php _e( 'Top', 'woosupercharge' ); ?></label>
 					<input type="radio" id="positionTop" name=<?php echo esc_attr( $name ); ?> value="top">
-					<label for="positionBottom" <?php self::active( $value, 'bottom' ); ?> >Bottom</label>
+					<label for="positionBottom" <?php self::active( $value, 'bottom' ); ?> ><?php _e( 'Bottom', 'woosupercharge' ); ?></label>
 					<input type="radio" id="positionBottom" name=<?php echo esc_attr( $name ); ?> value="bottom">
 				</div>
 			<?php
@@ -149,11 +149,10 @@ if ( ! class_exists( 'WooSupercharge_Helpers' ) ) {
 		public static function callback_conditions_repeater( $args ) {
 			$html                 = '';
 			$count                = 1;
-			$available_conditions = $args['options'];
 			$html                .= '<table id="woosupercharge-conditions-table">
 			<tbody>';
 
-			$current_values = $args['value'];
+			$current_values       = $args['value'];
 
 			foreach ( $current_values as $index => $current_value ) {
 				$html .= '<tr class="single_condition"><td>';
@@ -173,7 +172,7 @@ if ( ! class_exists( 'WooSupercharge_Helpers' ) ) {
 				$count++;
 			}
 
-			$html .= '</tbody></table><button type="button" class="button woosupercharge-add-condition">Add Display Condition</button>';
+			$html .= '</tbody></table><button type="button" class="button woosupercharge-add-condition">' . __( 'Add Display Condition', 'woosupercharge' ) . '</button>';
 
 			echo $html;
 		}
