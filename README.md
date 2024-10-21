@@ -26,12 +26,16 @@ Configure the plugin settings in the WordPress admin under 'WooSupercharge.' Adj
 
 ## Screenshots
 
-### On the Archive page
-![Screenshot 1](https://d960fn7fik8w3.cloudfront.net/ms_538397/3ijTUZPwxa8uGgCtmjnrj1V8AFL6QK/Monosnap%2BShop%2B%25E2%2580%2593%2Btalent%2B-%2BGoogle%2BChrome%2B2023-11-16%2B.png?Expires=1700083800&Signature=s-J4NL2j3PGKJZZv7m-E0ac9mFEMHIz5yI5QouZYY1JAux751Rz9d4yzugMyiaZxMqtaVe26RLAiUbVW97cKCVDvxUCQNS7c7LowuNGi~PVFAo~-gc7v-53JuSnmuBEzWsroJfmUNGLxTurMRHCJZR8SpZyTsMqV522J-nwIbzte0P23taqJjB2j0oBCwRYLhhMNROJuVkLWTkQ2oMsz~v0l-yG0FnFsiWVFQkTIzJGguVIH~CwYYkSzJcWb84LlSH4GPlLyuwkP~27efK~I1xfWP6jHrzHQnxY2EJT21oMD1bFrWkORGXKeHxXp~rUKDUIOLubjsdZbnnpQs7kehQ__&Key-Pair-Id=APKAJBCGYQYURKHBGCOA)
+### Available options
+![image](https://github.com/user-attachments/assets/25ed0c9e-3575-4bb9-a258-b7098c6c97d8)
 
 
-### On the single page
-![Screenshot 2](https://d960fn7fik8w3.cloudfront.net/ms_538397/p19kd9UlOTWsnd1BLakmSSmbrDt5f5/Monosnap%2BUt%2Bfugit.%2B%25E2%2580%2593%2Btalent%2B-%2BGoogle%2BChrome%2B2023-1.png?Expires=1700085600&Signature=tLtxDMklf6nNFXFNmKgNUWWQFJtctLjunOpZyeq28lZfhjvpNyRAkcsJ3k0qbF2Y-12evs0jcCfqNl0V6WGKfuwEbA4KdipzcJhktceMmlOmcd5OZ8DAS5UYACtJ5J9ij-N8dWXMkFtnGtXk4UufWcdXZWatle9Fpvd169J~Ya187G8TN43jrLx18eSKD7Xpum7xjob90QeY1Ou8nCKpl0V0Vuz9BLPfTBcX9YUeVosdI04j3zVkaRB8J3KYpTu~Vn8mymUxWmkisXEdNvt4vr0cHPPp4qTrSZga6vqgyzVzzX2z9~Cb-B~gqh7DROPnR5D8a9lrnSFbCEujzeDD0w__&Key-Pair-Id=APKAJBCGYQYURKHBGCOA)
+### Popup Layout option one
+![image](https://github.com/user-attachments/assets/bc54563d-37ca-4281-88f7-9981765a7aa3)
+
+
+### Popup Layout option two
+![image](https://github.com/user-attachments/assets/a33bef3c-947d-4e40-b7ca-5de91baf071d)
 
 
 ## Contributing
