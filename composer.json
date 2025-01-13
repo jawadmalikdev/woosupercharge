@@ -1,0 +1,21 @@
+{
+    "name": "jawadmalik/woosupercharge",
+    "type": "wordpress-plugin",
+    "description": "WooSupercharge is a powerful WooCommerce plugin that enhances your online store with advanced display features. It's designed to provide a seamless and dynamic user experience by incorporating a add to cart notification popup and a custom Gutenberg block for showcasing the latest ",
+    "license": "GPL-2.0-or-later",
+    "support": {
+        "source": "https://github.com/jawadmalikdev/woosupercharge",
+        "issues": "https://github.com/jawadmalikdev/woosupercharge/issues"
+    },
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "JawadMalik\\Woosupercharge\\": "includes/"
+        }
+    }
+}
