@@ -1,0 +1,34 @@
+<?php
+/**
+ * Class JawadMalik\Woosupercharge\Cart\Ajax
+ *
+ * @since 2.0
+ * @package woosupercharge
+ */
+
+namespace JawadMalik\Woosupercharge\Cart;
+
+class Ajax {
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 2.0
+	 */
+    public function __construct() {
+        add_action( 'wc_ajax_woosupercharge_add_to_cart', array( $this, 'woosupercharge_add_to_cart' ) );
+
+	}
+
+    /**
+	 * Handles AJAX request for adding to the cart.
+	 */
+	public function woosupercharge_add_to_cart(): void {
+
+		if ( ! isset( $_POST['add-to-cart'] ) ) {
+			wp_die();
+		}
+
+		\WC_AJAX::get_refreshed_fragments();
+	}
+}

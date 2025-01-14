@@ -8,7 +8,9 @@
 namespace JawadMalik\Woosupercharge;
 
 use JawadMalik\Woosupercharge\Settings;
-use JawadMalik\Woosupercharge\Cart;
+use JawadMalik\Woosupercharge\Cart\Ajax as Cart_Ajax;
+use JawadMalik\Woosupercharge\Cart\Block_Cart;
+use JawadMalik\Woosupercharge\Cart\Classic_Cart;
 use JawadMalik\Woosupercharge\Hooks;
 
 /**
@@ -28,7 +30,7 @@ class Woosupercharge {
 	/**
 	 * Cart object.
 	 *
-	 * @var Cart
+	 * @var Block_Cart|Classic_cart $cart.
 	 */
 	protected $cart;
 
@@ -65,7 +67,18 @@ class Woosupercharge {
 	 * @since 2.0
 	 */
 	public function setup(): Woosupercharge {
-		$this->cart  = new Cart();
+
+		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+			$cart = new Block_Cart( 
+				new Cart_Ajax() 
+			);
+		} else {
+			$cart = new Classic_Cart(
+				new Cart_Ajax()
+			);
+		}
+
+		$this->cart  = $cart;
 		$this->hooks = new Hooks( $this );
 		$this->hooks->addHooks();
 		return $this;
@@ -83,9 +96,9 @@ class Woosupercharge {
 	/**
 	 * Get plugin cart.
 	 *
-	 * @return Cart
+	 * @return Block_Cart|Classic_Cart
 	 */
-	public function getCart(): Cart {
+	public function getCart(): Block_Cart|Classic_Cart {
 		return $this->cart;
 	}
 
