@@ -79,7 +79,7 @@ class Helpers {
 	public static function callback_layout_select( $args ) {
 
 		$value = $args['value'];
-		$name  = $args['section'] . '[' . $args['name'] . ']';
+		$name  = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
 		ob_start();
 		?>
 				<div class="image-select">
@@ -107,7 +107,7 @@ class Helpers {
 
 		$value = $args['value'];
 
-		$name = $args['section'] . '[' . $args['name'] . ']';
+		$name  = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
 		ob_start();
 		?>
 				<div class="position-select-container" id="positionSelect">
@@ -128,16 +128,16 @@ class Helpers {
 	 */
 	public static function callback_slider( $args ) {
 		$value = $args['value'];
-		$name  = $args['section'] . '[' . $args['name'] . ']';
+		$name  = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
 		ob_start();
 		?>
-				<div class="slider-container">
-					<input type="range" id="slider" min="1" max="60" value=<?php echo esc_attr( $value ); ?> >
-					<input name="<?php echo esc_attr( $name ); ?>" type="number" id="sliderValue" value=<?php echo esc_attr( $value ); ?> min="1" max="60">
-				</div>
-			<?php
+			<div class="slider-container">
+				<input type="range" id="slider" min="1" max="60" value=<?php echo esc_attr( $value ); ?> >
+				<input name="<?php echo esc_attr( $name ); ?>" type="number" id="sliderValue" value=<?php echo esc_attr( $value ); ?> min="1" max="60">
+			</div>
+		<?php
 
-			echo ob_get_clean();
+		echo ob_get_clean();
 	}
 
 	/**
@@ -147,7 +147,7 @@ class Helpers {
 	 */
 	public static function callback_conditions_repeater( $args ) {
 		$html  = '';
-		$count = 1;
+		$count = 0;
 		$html .= '<table id="woosupercharge-conditions-table">
 			<tbody>';
 
@@ -155,7 +155,7 @@ class Helpers {
 
 		foreach ( $current_values as $index => $current_value ) {
 			$html .= '<tr class="single_condition"><td>';
-			$html .= sprintf( '<select class="select_condition" name="%1$s[%2$s][' . $count . ']" id="%1$s[%2$s]">', $args['section'], $args['name'] );
+			$html .= sprintf( '<select class="select_condition" name="%1$s[%2$s][%3$s][' . $count . ']" id="%1$s[%2$s][%3$s]">', $args['option_name'], $args['section'], $args['name'] );
 
 			foreach ( $args['options'] as $key => $value ) {
 

@@ -75,7 +75,7 @@ class Settings_Page extends Abstract_Admin_Page {
 		 * about display conditions this is provided here.
 		 */
 		$settings_fields      = $this->plugin->getSettings()->get_settings_fields();
-		$available_conditions = $settings_fields['woosupercharge-display-conditions-settings'][0];
+		$available_conditions = $settings_fields['woosupercharge-display-conditions-settings']['display_conditions'];
 		wp_add_inline_script(
 			'woosupercharge_settings_page_js',
 			' const availableConditions = ' . wp_json_encode( $available_conditions['options'] ) . ' '
@@ -115,7 +115,7 @@ class Settings_Page extends Abstract_Admin_Page {
 		settings_errors();
 		?>
 		<form action="options.php" method="POST">
-			<?php settings_fields( 'woosupercharge-settings' ); ?>
+			<?php settings_fields( 'woosupercharge' ); ?>
 			<?php do_settings_sections( 'woosupercharge-settings' ); ?>
 			<?php submit_button(); ?>
 		</form>

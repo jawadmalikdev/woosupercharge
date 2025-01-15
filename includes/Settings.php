@@ -1,5 +1,6 @@
 <?php
 namespace JawadMalik\Woosupercharge;
+
 use JawadMalik\Woosupercharge\Helpers;
 
 // Exit if accessed directly.
@@ -7,19 +8,23 @@ defined( 'ABSPATH' ) || exit;
 
 class Settings {
 
-	/**
-	 * settings sections array
-	 *
-	 * @var array
-	 */
-	protected $settings_sections = array();
+	const OPTION_GROUP = 'woosupercharge';
+
+	const OPTION_NAME = 'woosupercharge-settings';
 
 	/**
-	 * Settings fields array
-	 *
-	 * @var array
+	 * Default values for settings.
 	 */
-	protected $settings_fields = array();
+	protected $default_settings = array(
+		'woosupercharge-general-settings'            => array(
+			'layout'            => 'list',
+			'position'          => 'bottom',
+			'popup_close_after' => '5',
+		),
+		'woosupercharge-display-conditions-settings' => array(
+			'display_conditions' => array( 'all' ),
+		),
+	);
 
 	/**
 	 * Settings saved in the database
@@ -30,17 +35,32 @@ class Settings {
 	 */
 	protected $settings;
 
-
+	/**
+	 * Constructor sets the plugin settings.
+	 *
+	 * @since 2.0
+	 */
 	public function __construct() {
-
-		$this->settings = Helpers::get_woosupercharge_settings();
-
-		$this->settings_sections = $this->settings_sections();
-		$this->settings_fields   = $this->settings_fields();
+		// Get plugin settings if found in db otherwise use default settings.
+		$settings = get_option( 'woosupercharge-settings' );
+		if ( ! is_array( $settings ) ) {
+			$this->settings = $this->default_settings;
+			update_option( self::OPTION_NAME, $this->settings );
+		} else {
+			$this->settings = array_replace_recursive( $this->default_settings, $settings );
+		}
 	}
 
-	public function settings_sections() {
+	/**
+	 * Return the saved plugin settings.
+	 *
+	 * @since 2.0
+	 */
+	public function get_plugin_settings(): array {
+		return $this->settings;
+	}
 
+	public function get_settings_sections() {
 		$sections = array(
 			array(
 				'id'       => 'woosupercharge-general-settings',
@@ -80,40 +100,26 @@ class Settings {
 		);
 	}
 
-	/**
-	 * Returns all the settings fields
-	 *
-	 * @return array settings fields
-	 */
-	public function settings_fields() {
-
+	public function get_settings_fields() {
 		$settings_fields = array(
 			'woosupercharge-general-settings'            => array(
-				array(
-					'name'    => 'layout',
-					'label'   => __( 'Layout', 'woosupercharge' ),
-					'type'    => 'layout_select',
-					'default' => 'list',
+				'layout'            => array(
+					'label' => __( 'Layout', 'woosupercharge' ),
+					'type'  => 'layout_select',
 				),
-				array(
-					'name'    => 'position',
-					'label'   => __( 'POSITION', 'woosupercharge' ),
-					'type'    => 'position_select',
-					'default' => 'bottom',
+				'position'          => array(
+					'label' => __( 'POSITION', 'woosupercharge' ),
+					'type'  => 'position_select',
 				),
-				array(
-					'name'    => 'popup_close_after',
-					'label'   => __( 'CLOSE AFTER (SECONDS)', 'woosupercharge' ),
-					'type'    => 'slider',
-					'default' => '5',
+				'popup_close_after' => array(
+					'label' => __( 'CLOSE AFTER (SECONDS)', 'woosupercharge' ),
+					'type'  => 'slider',
 				),
 			),
 			'woosupercharge-display-conditions-settings' => array(
-				array(
-					'name'    => 'display_conditions',
+				'display_conditions' => array(
 					'label'   => __( 'Display Conditions', 'woosupercharge' ),
 					'type'    => 'conditions_repeater',
-					'default' => array( 'all' ),
 					'options' => array(
 						'all'                        => 'All pages',
 						'archive'                    => 'Shop Archive',
@@ -129,46 +135,43 @@ class Settings {
 		return $settings_fields;
 	}
 
-	public function get_settings_sections() {
-		return $this->settings_sections;
-	}
-
-	public function get_settings_fields() {
-		return $this->settings_fields;
-	}
-
 	public function add_settings_sections() {
+		$settings_sections = $this->get_settings_sections();
 		// Adds the settings sections
-		foreach ( $this->settings_sections as $section ) {
+		foreach ( $settings_sections as $section ) {
 			add_settings_section( $section['id'], $section['title'], $section['callback'], $section['page'], $section['args'] );
 		}
 	}
 
 	public function add_settings_fields() {
+		$settings_fields   = $this->get_settings_fields();
 		// Adds the settings fields
-		foreach ( $this->settings_fields as $section => $setting ) {
+		foreach ( $settings_fields as $section => $setting ) {
 
-			foreach ( $setting as $field ) {
-				$name     = $field['name'];
+			foreach ( $setting as $name => $field ) {
 				$args     = array(
-					'name'    => $field['name'],
-					'label'   => $field['label'],
-					'section' => $section,
-					'options' => isset( $field['options'] ) ? $field['options'] : '',
-					'value'   => $name === 'display_conditions' ? $this->settings['display_settings'][ $name ] : $this->settings['general_settings'][ $name ],
-					'type'    => $field['type'],
+					'name'        => $name,
+					'label'       => $field['label'],
+					'section'     => $section,
+					'options'     => isset( $field['options'] ) ? $field['options'] : '',
+					'value'       => isset( $this->settings[ $section ][ $name ] ) ? $this->settings[ $section ][ $name ] : false,
+					'type'        => $field['type'],
+					'option_name' => self::OPTION_NAME,
 				);
 				$callback = array( Helpers::class, 'callback_' . $field['type'] );
-				add_settings_field( $field['name'], $field['label'], $callback, 'woosupercharge-settings', $section, $args );
+				add_settings_field( $name, $field['label'], $callback, 'woosupercharge-settings', $section, $args );
 			}
 		}
 	}
 
 	public function do_settings() {
-		// creates our settings in the options table
-		foreach ( $this->settings_sections as $settings_section ) {
-			register_setting( 'woosupercharge-settings', $settings_section['id'] );
-		}
+
+		register_setting(
+			self::OPTION_GROUP,
+			self::OPTION_NAME,
+			$this->get_settings_fields()
+		);
+
 		$this->add_settings_sections();
 		$this->add_settings_fields();
 	}
