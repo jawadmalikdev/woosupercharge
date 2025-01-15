@@ -13,28 +13,6 @@ defined( 'ABSPATH' ) || exit;
 class Helpers {
 
 	/**
-	 * Retrieves WooSupercharge settings including general and display settings.
-	 *
-	 * @return array An array containing general and display settings.
-	 */
-	public static function get_woosupercharge_settings() {
-		$woosupercharge_settings = array(
-			'general_settings' => array(),
-			'display_settings' => array(),
-		);
-
-		$saved_general_settings = get_option( 'woosupercharge-general-settings' );
-		$saved_display_settings = get_option( 'woosupercharge-display-conditions-settings' );
-
-		$woosupercharge_settings['general_settings']['layout']             = isset( $saved_general_settings['layout'] ) ? $saved_general_settings['layout'] : 'card';
-		$woosupercharge_settings['general_settings']['position']           = isset( $saved_general_settings['position'] ) ? $saved_general_settings['position'] : 'top';
-		$woosupercharge_settings['general_settings']['popup_close_after']  = isset( $saved_general_settings['popup_close_after'] ) ? $saved_general_settings['popup_close_after'] : 5;
-		$woosupercharge_settings['display_settings']['display_conditions'] = isset( $saved_display_settings['display_conditions'] ) ? $saved_display_settings['display_conditions'] : array( 'all' );
-
-		return $woosupercharge_settings;
-	}
-
-	/**
 	 * Determines whether to display the cart popup based on given display conditions.
 	 *
 	 * @param array $display_conditions An array of display conditions.
