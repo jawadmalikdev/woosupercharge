@@ -1,5 +1,6 @@
 <?php
 namespace JawadMalik\Woosupercharge;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -85,13 +86,13 @@ class Helpers {
 
 		$value = $args['value'];
 
-		$name  = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
+		$name = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
 		ob_start();
 		?>
 				<div class="position-select-container" id="positionSelect">
-					<label for="positionTop" <?php self::active( $value, 'top' ); ?> ><?php _e( 'Top', 'woosupercharge' ); ?></label>
+					<label for="positionTop" <?php self::active( $value, 'top' ); ?> ><?php esc_html__( 'Top', 'woosupercharge' ); ?></label>
 					<input type="radio" id="positionTop" name=<?php echo esc_attr( $name ); ?> value="top">
-					<label for="positionBottom" <?php self::active( $value, 'bottom' ); ?> ><?php _e( 'Bottom', 'woosupercharge' ); ?></label>
+					<label for="positionBottom" <?php self::active( $value, 'bottom' ); ?> ><?php esc_html__( 'Bottom', 'woosupercharge' ); ?></label>
 					<input type="radio" id="positionBottom" name=<?php echo esc_attr( $name ); ?> value="bottom">
 				</div>
 			<?php
@@ -149,9 +150,73 @@ class Helpers {
 			++$count;
 		}
 
-		$html .= '</tbody></table><button type="button" class="button woosupercharge-add-condition">' . __( 'Add Display Condition', 'woosupercharge' ) . '</button>';
+		$html .= '</tbody></table><button type="button" class="button woosupercharge-add-condition">' . esc_html__( 'Add Display Condition', 'woosupercharge' ) . '</button>';
 
 		echo $html;
+	}
+
+	/**
+	 * Process the cart information and return product data to be used
+	 * in the view.
+	 *
+	 * @param string $cart_item_key Last saved item.
+	 * @param string $list_view_option Cart popup layout.
+	 *
+	 * @since 2.0
+	 */
+	public static function get_cart_template_args( $cart_item_key, $list_view_option ): array {
+
+		$cart = WC()->cart->get_cart();
+		// Ensure $cart_item_key is set.
+		$cart_item_key = isset( $cart_item_key ) ? $cart_item_key : '';
+
+		$item       = isset( $cart[ $cart_item_key ] ) ? $cart[ $cart_item_key ] : array();
+		$product_id = isset( $item['product_id'] ) ? $item['product_id'] : 0;
+
+		$product = wc_get_product( $product_id );
+
+		$product_data = $product ? array(
+			'thumbnail'     => $product->get_image(),
+			'thumbnail_url' => esc_url( get_the_post_thumbnail_url( $product->id ) ),
+			'product_name'  => $product->get_title(),
+			'product_price' => wp_strip_all_tags( wc_price( $product->get_price() ) ),
+			'cart_url'      => wc_get_cart_url(),
+		) : array(
+			'thumbnail'     => '',
+			'thumbnail_url' => '',
+			'product_name'  => '',
+			'product_price' => '',
+			'cart_url'      => '',
+		);
+
+		// Prepare variables.
+		$modal_style = 'list' === $list_view_option && $product_data['thumbnail_url']
+		? 'style=background-image:url("' . esc_url( $product_data['thumbnail_url'] ) . '")'
+		: '';
+
+		$show_thumbnail = 'list' !== $list_view_option && $product_data['thumbnail'];
+
+		// Allowed HTML for the thumbnail.
+		$allowed_thumbnail_html = array(
+			'img' => array(
+				'src'      => array(),
+				'width'    => array(),
+				'height'   => array(),
+				'class'    => array(),
+				'alt'      => array(),
+				'decoding' => array(),
+				'loading'  => array(),
+				'srcset'   => array(),
+				'sizes'    => array(),
+				'style'    => array(),
+			),
+		);
+
+		$product_data['modal_style']            = $modal_style;
+		$product_data['show_thumbnail']         = $show_thumbnail;
+		$product_data['allowed_thumbnail_html'] = $allowed_thumbnail_html;
+
+		return $product_data;
 	}
 
 	/**

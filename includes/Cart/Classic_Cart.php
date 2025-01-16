@@ -15,13 +15,15 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Cart class used for Classic themes.
- * 
+ *
  * @since 2.0
  */
 class Classic_Cart {
 
 	/**
-	 * @var array $settings An array to store WooSupercharge settings.
+	 * Plugin Settings.
+	 *
+	 * @var Settings $settings An array to store WooSupercharge settings.
 	 */
 	protected $settings;
 

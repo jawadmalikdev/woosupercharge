@@ -22,12 +22,16 @@ defined( 'ABSPATH' ) || exit;
 class Block_Cart {
 
 	/**
+	 * Product list.
+	 *
 	 * @var array $product_list An array to store product data for later use.
 	 */
 	protected $product_list;
 
 	/**
-	 * @var array $settings An array to store WooSupercharge settings.
+	 * Plugin Settings.
+	 *
+	 * @var Settings $settings An array to store WooSupercharge settings.
 	 */
 	protected $settings;
 
@@ -73,8 +77,9 @@ class Block_Cart {
 	 * Prints product data for use in JavaScript.
 	 */
 	public function print_product_data(): void {
+		$display_conditions = $this->settings->get_plugin_settings()['cart_display_conditions_settings']['display_conditions'];
 
-		if ( ! Helpers::display_cart_popup( $this->settings['cart_display_conditions_settings']['display_conditions'] ) ) {
+		if ( ! Helpers::display_cart_popup( $display_conditions ) ) {
 			return;
 		}
 
