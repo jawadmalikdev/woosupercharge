@@ -8,6 +8,11 @@
 
 namespace JawadMalik\Woosupercharge\Cart;
 
+/**
+ * Add our callback in woocommerce ajax action.
+ *
+ * @since 2.0
+ */
 class Ajax {
 
 	/**
@@ -15,12 +20,11 @@ class Ajax {
 	 *
 	 * @since 2.0
 	 */
-    public function __construct() {
-        add_action( 'wc_ajax_woosupercharge_add_to_cart', array( $this, 'woosupercharge_add_to_cart' ) );
-
+	public function __construct() {
+		add_action( 'wc_ajax_woosupercharge_add_to_cart', array( $this, 'woosupercharge_add_to_cart' ) );
 	}
 
-    /**
+	/**
 	 * Handles AJAX request for adding to the cart.
 	 */
 	public function woosupercharge_add_to_cart(): void {

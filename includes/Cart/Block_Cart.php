@@ -90,7 +90,7 @@ class Block_Cart {
 		$code = 'const woosupercharge_wc_product_list = {';
 
 		foreach ( $this->product_list as $product ) {
-			$code .= " 'item_" . $product['item_id'] . "' : " . json_encode( $product ) . ',';
+			$code .= " 'item_" . $product['item_id'] . "' : " . wp_json_encode( $product ) . ',';
 		}
 
 		$code .= '};';

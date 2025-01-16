@@ -30,7 +30,7 @@ class Woosupercharge {
 	/**
 	 * Cart object.
 	 *
-	 * @var Block_Cart|Classic_cart $cart.
+	 * @var Classic_Cart|Block_Cart $cart.
 	 */
 	protected $cart;
 
@@ -69,9 +69,9 @@ class Woosupercharge {
 	public function setup(): Woosupercharge {
 
 		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
-			$cart = new Block_Cart( 
+			$cart = new Block_Cart(
 				$this->get_settings(),
-				new Cart_Ajax() 
+				new Cart_Ajax()
 			);
 		} else {
 			$cart = new Classic_Cart(
@@ -82,7 +82,7 @@ class Woosupercharge {
 
 		$this->cart  = $cart;
 		$this->hooks = new Hooks( $this );
-		$this->hooks->addHooks();
+		$this->hooks->add_hooks();
 		return $this;
 	}
 
@@ -98,9 +98,9 @@ class Woosupercharge {
 	/**
 	 * Get plugin cart.
 	 *
-	 * @return Block_Cart|Classic_Cart
+	 * @return Classic_Cart|Block_Cart
 	 */
-	public function get_cart(): Block_Cart|Classic_Cart {
+	public function get_cart(): Classic_Cart|Block_Cart {
 		return $this->cart;
 	}
 

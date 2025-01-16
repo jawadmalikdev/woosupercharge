@@ -1,7 +1,7 @@
 <?php
 /**
  * Class JawadMalik\Woosupercharge\Admin\Abstract_Admin_Page
- * 
+ *
  * @since 2.0
  * @package woosupercharge
  */
@@ -10,7 +10,7 @@ namespace JawadMalik\Woosupercharge\Admin;
 
 /**
  * Base class representing a WordPress admin page.
- * 
+ *
  * @since 2.0
  */
 abstract class Abstract_Admin_Page {
@@ -85,16 +85,17 @@ abstract class Abstract_Admin_Page {
 
 	/**
 	 * Registers the Assets for the page.
-	 * 
+	 *
+	 * @param string $hook Page slug passed by wp.
 	 * @since 2.0
 	 */
 	abstract public function register_assets( $hook ): void;
 
 	/**
 	 * Register the page in WordPress admin menu.
-	 * 
+	 *
 	 * @since 2.0
-	 * 
+	 *
 	 * @return string Admin page generated suffix.
 	 */
 	abstract public function add_page(): string;

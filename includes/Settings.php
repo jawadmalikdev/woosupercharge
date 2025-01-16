@@ -1,4 +1,11 @@
 <?php
+/**
+ * Class JawadMalik\Woosupercharge\Settings.
+ *
+ * @since 2.0
+ *
+ * @package woosupercharge
+ */
 namespace JawadMalik\Woosupercharge;
 
 use JawadMalik\Woosupercharge\Helpers;
@@ -6,6 +13,11 @@ use JawadMalik\Woosupercharge\Helpers;
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Main plugin settings class.
+ *
+ * @since 2.0
+ */
 class Settings {
 
 	const OPTION_GROUP = 'woosupercharge';
@@ -14,6 +26,8 @@ class Settings {
 
 	/**
 	 * Default values for settings.
+	 *
+	 * @var array
 	 */
 	protected $default_settings = array(
 		'cart_general_settings'            => array(
@@ -60,28 +74,34 @@ class Settings {
 		return $this->settings;
 	}
 
-	public function get_settings_sections() {
+	/**
+	 * Setting section to register.
+	 *
+	 * @since 2.0
+	 */
+	public function get_settings_sections(): array {
 		$sections = array(
 			array(
 				'id'       => 'cart_general_settings',
 				'title'    => __( 'WooSupercharge General Settings', 'woosupercharge' ),
 				'callback' => array( $this, 'cart_general_settings_callback' ),
 				'page'     => 'woosupercharge-settings',
-				'args'     => array(),
 			),
 			array(
 				'id'       => 'cart_display_conditions_settings',
 				'title'    => __( 'WooSupercharge Display Conditions Settings', 'woosupercharge' ),
 				'callback' => array( $this, 'display_conditions_settings_callback' ),
 				'page'     => 'woosupercharge-settings',
-				'args'     => array(),
 			),
 		);
 
 		return $sections;
 	}
 
-	public function cart_general_settings_callback( $args ) {
+	/**
+	 * Callback function for general settings section.
+	 */
+	public function cart_general_settings_callback() {
 		printf(
 			'<p>%s</p>',
 			esc_html__(
@@ -90,6 +110,10 @@ class Settings {
 			)
 		);
 	}
+
+	/**
+	 * Callback function for display settings section.
+	 */
 	public function display_conditions_settings_callback() {
 		printf(
 			'<p>%s</p>',
@@ -135,6 +159,9 @@ class Settings {
 		return $settings_fields;
 	}
 
+	/**
+	 * Add settings sections.
+	 */
 	public function add_settings_sections() {
 		$settings_sections = $this->get_settings_sections();
 		// Adds the settings sections
@@ -143,8 +170,11 @@ class Settings {
 		}
 	}
 
+	/**
+	 * Add setting fields.
+	 */
 	public function add_settings_fields() {
-		$settings_fields   = $this->get_settings_fields();
+		$settings_fields = $this->get_settings_fields();
 		// Adds the settings fields
 		foreach ( $settings_fields as $section => $setting ) {
 
@@ -164,6 +194,11 @@ class Settings {
 		}
 	}
 
+	/**
+	 * Register the plugin settings and add section and settings fields.
+	 *
+	 * @uses "admin_init" action
+	 */
 	public function do_settings() {
 
 		register_setting(

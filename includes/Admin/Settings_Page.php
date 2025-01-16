@@ -37,7 +37,7 @@ class Settings_Page extends Abstract_Admin_Page {
 	 *
 	 * @since 2.0
 	 *
-	 * @param Woosupercharge $plugin
+	 * @param Woosupercharge $plugin Main plugin object.
 	 */
 	public function __construct( Woosupercharge $plugin ) {
 		$this->plugin = $plugin;
@@ -47,6 +47,8 @@ class Settings_Page extends Abstract_Admin_Page {
 	 * Register assets
 	 *
 	 * @since 2.0
+	 *
+	 * @param string $hook Page slug passed by wp.
 	 *
 	 * @uses "admin_enqueue_scripts" action
 	 */
@@ -67,7 +69,8 @@ class Settings_Page extends Abstract_Admin_Page {
 			'woosupercharge_settings_page_js',
 			WOOSUPERCHARGE_PLUGIN_URL . 'assets/js/settings.min.js',
 			array( 'jquery' ),
-			$this->plugin->version
+			$this->plugin->version,
+			true
 		);
 
 		/**
