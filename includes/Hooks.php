@@ -45,19 +45,19 @@ class Hooks {
 	 * Register all hooks
 	 */
 	public function addHooks(): void {
-		add_action( 'plugins_loaded', array( $this->plugin, 'pluginLoaded' ) );
+		add_action( 'plugins_loaded', array( $this->plugin, 'plugin_loaded' ) );
 		add_action( 'admin_menu', array( $this->settings_Page, 'add_page' ) );
 		add_action( 'admin_enqueue_scripts', array( $this->settings_Page, 'register_assets' ) );
-		add_action( 'admin_init', array( $this->plugin->getSettings(), 'do_settings' ) );
+		add_action( 'admin_init', array( $this->plugin->get_settings(), 'do_settings' ) );
 	}
 
 	/**
 	 * Remove Hooks
 	 */
 	public function removeHooks(): void {
-		remove_action( 'plugins_loaded', array( $this->plugin, 'pluginLoaded' ) );
+		remove_action( 'plugins_loaded', array( $this->plugin, 'plugin_loaded' ) );
 		remove_action( 'admin_menu', array( $this->settings_Page, 'add_page' ) );
 		remove_action( 'admin_enqueue_scripts', array( $this->settings_Page, 'register_assets' ) );
-		remove_action( 'admin_init', array( $this->plugin->getSettings(), 'do_settings' ) );
+		remove_action( 'admin_init', array( $this->plugin->get_settings(), 'do_settings' ) );
 	}
 }

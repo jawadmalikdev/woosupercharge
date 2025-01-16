@@ -16,12 +16,12 @@ class Settings {
 	 * Default values for settings.
 	 */
 	protected $default_settings = array(
-		'woosupercharge-general-settings'            => array(
+		'cart_general_settings'            => array(
 			'layout'            => 'list',
 			'position'          => 'bottom',
 			'popup_close_after' => '5',
 		),
-		'woosupercharge-display-conditions-settings' => array(
+		'cart_display_conditions_settings' => array(
 			'display_conditions' => array( 'all' ),
 		),
 	);
@@ -63,14 +63,14 @@ class Settings {
 	public function get_settings_sections() {
 		$sections = array(
 			array(
-				'id'       => 'woosupercharge-general-settings',
+				'id'       => 'cart_general_settings',
 				'title'    => __( 'WooSupercharge General Settings', 'woosupercharge' ),
-				'callback' => array( $this, 'general_settings_callback' ),
+				'callback' => array( $this, 'cart_general_settings_callback' ),
 				'page'     => 'woosupercharge-settings',
 				'args'     => array(),
 			),
 			array(
-				'id'       => 'woosupercharge-display-conditions-settings',
+				'id'       => 'cart_display_conditions_settings',
 				'title'    => __( 'WooSupercharge Display Conditions Settings', 'woosupercharge' ),
 				'callback' => array( $this, 'display_conditions_settings_callback' ),
 				'page'     => 'woosupercharge-settings',
@@ -81,7 +81,7 @@ class Settings {
 		return $sections;
 	}
 
-	public function general_settings_callback( $args ) {
+	public function cart_general_settings_callback( $args ) {
 		printf(
 			'<p>%s</p>',
 			esc_html__(
@@ -102,7 +102,7 @@ class Settings {
 
 	public function get_settings_fields() {
 		$settings_fields = array(
-			'woosupercharge-general-settings'            => array(
+			'cart_general_settings'            => array(
 				'layout'            => array(
 					'label' => __( 'Layout', 'woosupercharge' ),
 					'type'  => 'layout_select',
@@ -116,7 +116,7 @@ class Settings {
 					'type'  => 'slider',
 				),
 			),
-			'woosupercharge-display-conditions-settings' => array(
+			'cart_display_conditions_settings' => array(
 				'display_conditions' => array(
 					'label'   => __( 'Display Conditions', 'woosupercharge' ),
 					'type'    => 'conditions_repeater',

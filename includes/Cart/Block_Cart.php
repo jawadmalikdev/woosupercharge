@@ -7,6 +7,7 @@
 
 namespace JawadMalik\Woosupercharge\Cart;
 
+use JawadMalik\Woosupercharge\Settings;
 use JawadMalik\Woosupercharge\Cart\Cart_Trait;
 use JawadMalik\Woosupercharge\Helpers;
 
@@ -15,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Cart class used for Block themes.
- * 
+ *
  * @since 2.0
  */
 class Block_Cart {
@@ -44,13 +45,14 @@ class Block_Cart {
 
 	/**
 	 * Constructor method for initializing the class.
-     * 
-     * @param Ajax $ajax
-     * 
-     * @since 2.0
+	 *
+	 * @param Settings $settings plugin settings.
+	 * @param Ajax     $ajax cart ajax.
+	 *
+	 * @since 2.0
 	 */
-	public function __construct( Ajax $ajax ) {
-		$this->settings = Helpers::get_woosupercharge_settings();
+	public function __construct( Settings $settings, Ajax $ajax ) {
+		$this->settings = $settings;
 		$this->ajax     = $ajax;
 		$this->hooks();
 	}
@@ -72,7 +74,7 @@ class Block_Cart {
 	 */
 	public function print_product_data(): void {
 
-		if ( ! Helpers::display_cart_popup( $this->settings['display_settings']['display_conditions'] ) ) {
+		if ( ! Helpers::display_cart_popup( $this->settings['cart_display_conditions_settings']['display_conditions'] ) ) {
 			return;
 		}
 

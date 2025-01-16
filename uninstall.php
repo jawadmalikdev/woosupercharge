@@ -15,4 +15,5 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 delete_option( 'woosupercharge-settings' );
+delete_option( 'woosupercharge_last_added_cart_key' );
 wp_cache_flush();

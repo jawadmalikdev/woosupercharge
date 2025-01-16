@@ -31,7 +31,7 @@ trait Cart_Trait {
 	 */
 	public function load_cart_popup_script(): void {
 
-		if ( ! Helpers::display_cart_popup( $this->settings['display_settings']['display_conditions'] ) ) {
+		if ( ! Helpers::display_cart_popup( $this->settings['cart_display_conditions_settings']['display_conditions'] ) ) {
 			return;
 		}
 
@@ -40,9 +40,9 @@ trait Cart_Trait {
 			'cart_popup_script',
 			'woosupercharge',
 			array(
-				'layout'             => $this->settings['general_settings']['layout'],
-				'position'           => $this->settings['general_settings']['position'],
-				'popup_close_after'  => apply_filters( 'change_woosupercharge_popup_close_time', $this->settings['general_settings']['popup_close_after'] ),
+				'layout'             => $this->settings['cart_general_settings']['layout'],
+				'position'           => $this->settings['cart_general_settings']['position'],
+				'popup_close_after'  => apply_filters( 'change_woosupercharge_popup_close_time', $this->settings['cart_general_settings']['popup_close_after'] ),
 				'wc_single_ajax_url' => \WC_AJAX::get_endpoint( 'woosupercharge_add_to_cart' ),
 				'wc_cart_url'        => wc_get_cart_url(),
 			)
@@ -59,7 +59,7 @@ trait Cart_Trait {
 		?>
 
 			<!-- Modal Container -->
-			<div class="woosupercharge-modal <?php echo esc_attr( $this->settings['general_settings']['position'] ); ?> " style='display: none;'>
+			<div class="woosupercharge-modal <?php echo esc_attr( $this->settings['cart_general_settings']['position'] ); ?> " style='display: none;'>
 				<div class="woosupercharge-modal-container">
 					<span class="woosupercharge-modal-close">X</span>
 					<div class="woosupercharge-modal-content"></div>
@@ -115,7 +115,7 @@ trait Cart_Trait {
 
 		$args = array(
 			'cart_item_key' => $cart_item_key,
-			'listview'      => $this->settings['general_settings']['layout'],
+			'listview'      => $this->settings['cart_general_settings']['layout'],
 		);
 
 		ob_start();

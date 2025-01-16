@@ -7,8 +7,8 @@
 
 namespace JawadMalik\Woosupercharge\Cart;
 
+use JawadMalik\Woosupercharge\Settings;
 use JawadMalik\Woosupercharge\Cart\Cart_Trait;
-use JawadMalik\Woosupercharge\Helpers;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -39,13 +39,14 @@ class Classic_Cart {
 
 	/**
 	 * Constructor method for initializing the class.
-	 * 
-	 * @param Ajax $ajax.
-	 * 
+	 *
+	 * @param Settings $settings plugin settings.
+	 * @param Ajax     $ajax cart ajax.
+	 *
 	 * @since 2.0
 	 */
-	public function __construct( Ajax $ajax ) {
-		$this->settings = Helpers::get_woosupercharge_settings();
+	public function __construct( Settings $settings, Ajax $ajax ) {
+		$this->settings = $settings;
 		$this->ajax     = $ajax;
 		$this->hooks();
 	}

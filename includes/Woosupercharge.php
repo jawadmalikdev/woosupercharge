@@ -70,10 +70,12 @@ class Woosupercharge {
 
 		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
 			$cart = new Block_Cart( 
+				$this->get_settings(),
 				new Cart_Ajax() 
 			);
 		} else {
 			$cart = new Classic_Cart(
+				$this->get_settings(),
 				new Cart_Ajax()
 			);
 		}
@@ -89,7 +91,7 @@ class Woosupercharge {
 	 *
 	 * @return Settings
 	 */
-	public function getSettings(): Settings {
+	public function get_settings(): Settings {
 		return $this->settings;
 	}
 
@@ -98,7 +100,7 @@ class Woosupercharge {
 	 *
 	 * @return Block_Cart|Classic_Cart
 	 */
-	public function getCart(): Block_Cart|Classic_Cart {
+	public function get_cart(): Block_Cart|Classic_Cart {
 		return $this->cart;
 	}
 
@@ -108,7 +110,7 @@ class Woosupercharge {
 	 *
 	 * @uses "plugins_loaded" action
 	 */
-	public function pluginLoaded(): void {
+	public function plugin_loaded(): void {
 		load_plugin_textdomain( 'woosupercharge', false, WOOSUPERCHARGE_PLUGIN_DIR . '/languages/' );
 	}
 }

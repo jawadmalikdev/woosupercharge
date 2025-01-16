@@ -71,11 +71,11 @@ class Settings_Page extends Abstract_Admin_Page {
 		);
 
 		/**
-		 * our jQuery script on settings page need information
+		 * Our jQuery script on settings page need information
 		 * about display conditions this is provided here.
 		 */
-		$settings_fields      = $this->plugin->getSettings()->get_settings_fields();
-		$available_conditions = $settings_fields['woosupercharge-display-conditions-settings']['display_conditions'];
+		$settings_fields      = $this->plugin->get_settings()->get_settings_fields();
+		$available_conditions = $settings_fields['cart_display_conditions_settings']['display_conditions'];
 		wp_add_inline_script(
 			'woosupercharge_settings_page_js',
 			' const availableConditions = ' . wp_json_encode( $available_conditions['options'] ) . ' '
@@ -100,7 +100,7 @@ class Settings_Page extends Abstract_Admin_Page {
 				'render',
 			),
 			'',
-			6
+			55.4
 		);
 
 		return $suffix;
