@@ -65,7 +65,7 @@ jQuery(document).ready(function($) {
       let html = '';
       html += '<tr class="single_condition">';
       html += '<td>';
-      html += '<select class="select_condition" name="woosupercharge-display-conditions-settings[display_conditions][' + count + ']">';
+      html += '<select class="select_condition" name="woosupercharge-settings[cart_display_conditions_settings][display_conditions][' + count + ']">';
 
       let hasSelected = true;
       for (let key in woosupercharge_cd_available) {

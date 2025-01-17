@@ -1,0 +1,16 @@
+{
+	"name": "woosupercharge",
+	"version": "2.0",
+	"description": "WordPress plugin",
+	"author": "Jawad Malik",
+	"keywords": [
+		"WordPress",
+		"plugin"
+	],
+	"devDependencies": {
+		"husky": "^9.0.11"
+	},
+	"scripts": {
+		"prepare": "husky"
+	}
+}

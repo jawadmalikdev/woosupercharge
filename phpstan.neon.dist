@@ -1,0 +1,14 @@
+parameters:
+  level: 8
+  bootstrapFiles:
+    - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+  paths:
+    - ./includes
+    - ./templates
+    - ./woosupercharge.php
+    - ./uninstall.php
+  excludePaths:
+      - ./templates/product-card.php
+  ignoreErrors:
+    - identifier: constant.notFound
+    - identifier: missingType.iterableValue
