@@ -1,0 +1,2 @@
+composer check-cs -- --warning-severity=6
+composer phpstan
