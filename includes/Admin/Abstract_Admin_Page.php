@@ -95,10 +95,8 @@ abstract class Abstract_Admin_Page {
 	 * Register the page in WordPress admin menu.
 	 *
 	 * @since 2.0
-	 *
-	 * @return string Admin page generated suffix.
 	 */
-	abstract public function add_page(): string;
+	abstract public function add_page(): void;
 
 	/**
 	 * Renders the admin page.

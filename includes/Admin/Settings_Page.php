@@ -61,7 +61,7 @@ class Settings_Page extends Abstract_Admin_Page {
 		wp_enqueue_style(
 			'woosupercharge_settings_page_css',
 			WOOSUPERCHARGE_PLUGIN_URL . 'assets/css/settings.css',
-			false,
+			array(),
 			$this->plugin->version
 		);
 
@@ -89,11 +89,9 @@ class Settings_Page extends Abstract_Admin_Page {
 	 * Adds the admin page.
 	 *
 	 * @since 2.0
-	 *
-	 * @return string Admin page generated suffix.
 	 */
-	public function add_page(): string {
-		$suffix = add_menu_page(
+	public function add_page():void {
+		add_menu_page(
 			$this->title(),
 			'WooSupercharge',
 			$this->capability(),
@@ -105,8 +103,6 @@ class Settings_Page extends Abstract_Admin_Page {
 			'',
 			55.4
 		);
-
-		return $suffix;
 	}
 
 	/**

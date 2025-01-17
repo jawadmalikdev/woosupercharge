@@ -54,7 +54,7 @@ if ( ! Helpers::is_woocommerce_active() ) {
  *
  * @since 2.0
  */
-function woosupercharge_check_display_php_version_notice() {
+function woosupercharge_check_display_php_version_notice(): void {
 	echo '<div class="notice notice-error"><p>';
 	printf(
 		/* translators: 1: required version, 2: currently used version */
@@ -70,7 +70,7 @@ function woosupercharge_check_display_php_version_notice() {
  *
  * @since 2.0
  */
-function woosupercharge_check_display_composer_autoload_notice() {
+function woosupercharge_check_display_composer_autoload_notice(): void {
 	echo '<div class="notice notice-error"><p>';
 	printf(
 		/* translators: composer command. */
@@ -85,7 +85,7 @@ function woosupercharge_check_display_composer_autoload_notice() {
  *
  * @since 2.0
  */
-function woocommerce_not_active_notice() {
+function woocommerce_not_active_notice(): void {
 	echo '<div class="notice notice-error"><p>';
 	printf(
 		esc_html__( 'Woosupercharge is meant to be used with WooCommerce. Plz make sure Woocommerce is active.', 'woosupercharge' ),

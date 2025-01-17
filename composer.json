@@ -17,7 +17,8 @@
         "php-parallel-lint/php-parallel-lint": "^1.3",
         "phpstan/phpstan": "^2.0",
         "phpstan/extension-installer": "^1.4",
-        "szepeviktor/phpstan-wordpress": "^2.0"
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "php-stubs/woocommerce-stubs": "^9.5"
     },
     "scripts": {
 		"check-cs": [

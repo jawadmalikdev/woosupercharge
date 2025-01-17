@@ -1,6 +1,8 @@
 <?php
 namespace JawadMalik\Woosupercharge;
 
+use phpDocumentor\Reflection\Types\Boolean;
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
@@ -16,7 +18,7 @@ class Helpers {
 	/**
 	 * Determines whether to display the cart popup based on given display conditions.
 	 *
-	 * @param array $display_conditions An array of display conditions.
+	 * @param array<string> $display_conditions An array of display conditions.
 	 * @return bool True if the cart popup should be displayed, false otherwise.
 	 */
 	public static function display_cart_popup( $display_conditions ) {
@@ -27,23 +29,23 @@ class Helpers {
 			$conditions_array[ $condition ] = $condition;
 		}
 
-		if ( isset( $conditions_array['all'] ) ) {
+		if ( isset( $display_conditions['all'] ) ) {
 			return true;
 		}
 
-		if ( isset( $conditions_array['archive'] ) && function_exists( 'is_shop' ) && is_shop() ) {
+		if ( isset( $display_conditions['archive'] ) && function_exists( 'is_shop' ) && is_shop() ) {
 			return true;
 		}
-		if ( isset( $conditions_array['categories-archive'] ) && is_tax( 'product_cat' ) ) {
+		if ( isset( $display_conditions['categories-archive'] ) && is_tax( 'product_cat' ) ) {
 			return true;
 		}
-		if ( isset( $conditions_array['tags-archive'] ) && is_tax( 'product_tag' ) ) {
+		if ( isset( $display_conditions['tags-archive'] ) && is_tax( 'product_tag' ) ) {
 			return true;
 		}
-		if ( isset( $conditions_array['product-attributes-archive'] ) && is_tax( 'product_attribute' ) ) {
+		if ( isset( $display_conditions['product-attributes-archive'] ) && is_tax( 'product_attribute' ) ) {
 			return true;
 		}
-		if ( isset( $conditions_array['single'] ) && is_singular( 'product' ) ) {
+		if ( isset( $display_conditions['single'] ) && is_singular( 'product' ) ) {
 			return true;
 		}
 
@@ -53,9 +55,9 @@ class Helpers {
 	/**
 	 * Callback function for rendering a layout selection field.
 	 *
-	 * @param array $args An array of arguments for rendering the field.
+	 * @param array<mixed> $args An array of arguments for rendering the field.
 	 */
-	public static function callback_layout_select( $args ) {
+	public static function callback_layout_select( $args ):void {
 
 		$value = $args['value'];
 		$name  = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
@@ -80,9 +82,9 @@ class Helpers {
 	/**
 	 * Callback function for rendering a position selection field.
 	 *
-	 * @param array $args An array of arguments for rendering the field.
+	 * @param array<mixed> $args An array of arguments for rendering the field.
 	 */
-	public static function callback_position_select( $args ) {
+	public static function callback_position_select( $args ):void {
 
 		$value = $args['value'];
 
@@ -103,9 +105,9 @@ class Helpers {
 	/**
 	 * Callback function for rendering a slider field.
 	 *
-	 * @param array $args An array of arguments for rendering the field.
+	 * @param array<mixed> $args An array of arguments for rendering the field.
 	 */
-	public static function callback_slider( $args ) {
+	public static function callback_slider( $args ):void {
 		$value = $args['value'];
 		$name  = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
 		ob_start();
@@ -122,9 +124,9 @@ class Helpers {
 	/**
 	 * Callback function for rendering a conditions repeater field.
 	 *
-	 * @param array $args An array of arguments for rendering the field.
+	 * @param array<mixed> $args An array of arguments for rendering the field.
 	 */
-	public static function callback_conditions_repeater( $args ) {
+	public static function callback_conditions_repeater( $args ):void {
 		$html  = '';
 		$count = 0;
 		$html .= '<table id="woosupercharge-conditions-table">
@@ -162,13 +164,12 @@ class Helpers {
 	 * @param string $cart_item_key Last saved item.
 	 * @param string $list_view_option Cart popup layout.
 	 *
+	 * @return array The cart template arguments.
 	 * @since 2.0
 	 */
-	public static function get_cart_template_args( $cart_item_key, $list_view_option ): array {
+	public static function get_cart_template_args( $cart_item_key, $list_view_option ) {
 
 		$cart = WC()->cart->get_cart();
-		// Ensure $cart_item_key is set.
-		$cart_item_key = isset( $cart_item_key ) ? $cart_item_key : '';
 
 		$item       = isset( $cart[ $cart_item_key ] ) ? $cart[ $cart_item_key ] : array();
 		$product_id = isset( $item['product_id'] ) ? $item['product_id'] : 0;
@@ -177,9 +178,9 @@ class Helpers {
 
 		$product_data = $product ? array(
 			'thumbnail'     => $product->get_image(),
-			'thumbnail_url' => esc_url( get_the_post_thumbnail_url( $product->id ) ),
+			'thumbnail_url' => esc_url( (string) get_the_post_thumbnail_url( $product->get_id() ) ),
 			'product_name'  => $product->get_title(),
-			'product_price' => wp_strip_all_tags( wc_price( $product->get_price() ) ),
+			'product_price' => wp_strip_all_tags( wc_price( (float) $product->get_price() ) ),
 			'cart_url'      => wc_get_cart_url(),
 		) : array(
 			'thumbnail'     => '',
@@ -224,7 +225,7 @@ class Helpers {
 	 *
 	 * @since 2.0
 	 */
-	public static function is_woocommerce_active() {
+	public static function is_woocommerce_active():bool {
 		$active_plugins = (array) get_option( 'active_plugins', array() );
 		if ( is_multisite() ) {
 			$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
@@ -243,7 +244,7 @@ class Helpers {
 	 * @param mixed $value The value to compare against.
 	 * @param mixed $current The current value.
 	 */
-	public static function active( $value, $current ) {
+	public static function active( $value, $current ): void {
 
 		if ( $value === $current ) {
 			echo 'class="active"';

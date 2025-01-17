@@ -24,7 +24,7 @@ class Block_Cart {
 	/**
 	 * Product list.
 	 *
-	 * @var array $product_list An array to store product data for later use.
+	 * @var array<mixed> $product_list An array to store product data for later use.
 	 */
 	protected $product_list;
 

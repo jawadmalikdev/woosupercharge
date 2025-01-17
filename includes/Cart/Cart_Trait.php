@@ -50,7 +50,7 @@ trait Cart_Trait {
 			)
 		);
 
-		wp_enqueue_style( 'cart_popup_css', WOOSUPERCHARGE_PLUGIN_URL . 'assets/css/cart-popup.css', false, WOOSUPERCHARGE_VERSION );
+		wp_enqueue_style( 'cart_popup_css', WOOSUPERCHARGE_PLUGIN_URL . 'assets/css/cart-popup.css', array(), WOOSUPERCHARGE_VERSION );
 	}
 
 	/**
@@ -85,8 +85,8 @@ trait Cart_Trait {
 	/**
 	 * Adds AJAX fragments to update the cart content.
 	 *
-	 * @param array $fragments The existing fragments.
-	 * @return array The updated fragments.
+	 * @param array<mixed> $fragments The existing fragments.
+	 * @return array<string,string> The updated fragments.
 	 */
 	public function add_ajax_fragments( $fragments ): array {
 
@@ -103,7 +103,7 @@ trait Cart_Trait {
 	 *
 	 * @return string The HTML markup of the cart content.
 	 */
-	public function get_cart_content(): string {
+	public function get_cart_content(): string|bool {
 
 		// Get last cart item entry.
 		$cart_item_key = get_option( 'woosupercharge_last_added_cart_key' );

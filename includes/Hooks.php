@@ -27,7 +27,7 @@ class Hooks {
 	/**
 	 * Settings page.
 	 *
-	 * @var SettingsPage
+	 * @var Settings_Page
 	 */
 	protected $settings_page;
 
