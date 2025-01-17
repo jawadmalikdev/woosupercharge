@@ -4,7 +4,7 @@
  * Description:       WooSupercharge is a powerful WooCommerce plugin that enhances your online store with advanced display features. It's designed to provide a seamless and dynamic user experience by incorporating a add to cart notification popup.
  * Requires at least: 5.6
  * Requires PHP:      7.4
- * Version:           1.0
+ * Version:           2.0
  * Author:            Jawad Malik
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WOOSUPERCHARGE_VERSION', '1.0' );
+define( 'WOOSUPERCHARGE_VERSION', '2.0' );
 define( 'WOOSUPERCHARGE_CHECK_MINIMUM_PHP', '7.4' );
 define( 'WOOSUPERCHARGE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WOOSUPERCHARGE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
