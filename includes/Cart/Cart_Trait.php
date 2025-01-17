@@ -102,7 +102,7 @@ trait Cart_Trait {
 	/**
 	 * Retrieves the cart content for display.
 	 *
-	 * @return string The HTML markup of the cart content.
+	 * @return string|false The HTML markup of the cart content.
 	 */
 	public function get_cart_content() {
 
