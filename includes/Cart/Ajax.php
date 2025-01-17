@@ -28,7 +28,7 @@ class Ajax {
 	 * Handles AJAX request for adding to the cart.
 	 */
 	public function woosupercharge_add_to_cart(): void {
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		if ( ! isset( $_POST['add-to-cart'] ) ) {
 			wp_die();
 		}

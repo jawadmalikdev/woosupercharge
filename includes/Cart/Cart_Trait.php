@@ -37,14 +37,14 @@ trait Cart_Trait {
 			return;
 		}
 
-		wp_enqueue_script( 'cart_popup_script', WOOSUPERCHARGE_PLUGIN_URL . 'assets/js/cart-popup.min.js', array( 'jquery' ), WOOSUPERCHARGE_VERSION );
+		wp_enqueue_script( 'cart_popup_script', WOOSUPERCHARGE_PLUGIN_URL . 'assets/js/cart-popup.min.js', array( 'jquery' ), WOOSUPERCHARGE_VERSION, true );
 		wp_localize_script(
 			'cart_popup_script',
 			'woosupercharge',
 			array(
 				'layout'             => $settings['cart_general_settings']['layout'],
 				'position'           => $settings['cart_general_settings']['position'],
-				'popup_close_after'  => apply_filters( 'change_woosupercharge_popup_close_time', $settings['cart_general_settings']['popup_close_after'] ),
+				'popup_close_after'  => apply_filters( 'woosupercharge_popup_close_time', $settings['cart_general_settings']['popup_close_after'] ),
 				'wc_single_ajax_url' => \WC_AJAX::get_endpoint( 'woosupercharge_add_to_cart' ),
 				'wc_cart_url'        => wc_get_cart_url(),
 			)
@@ -70,6 +70,7 @@ trait Cart_Trait {
 
 		<?php
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo ob_get_clean();
 	}
 

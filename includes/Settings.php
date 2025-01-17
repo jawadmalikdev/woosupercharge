@@ -80,7 +80,7 @@ class Settings {
 	 *
 	 * @since 2.0
 	 */
-	public function get_settings_sections():array {
+	public function get_settings_sections(): array {
 		$sections = array(
 			array(
 				'id'       => 'cart_general_settings',
@@ -102,7 +102,7 @@ class Settings {
 	/**
 	 * Callback function for general settings section.
 	 */
-	public function cart_general_settings_callback():void {
+	public function cart_general_settings_callback(): void {
 		printf(
 			'<p>%s</p>',
 			esc_html__(
@@ -115,10 +115,10 @@ class Settings {
 	/**
 	 * Callback function for display settings section.
 	 */
-	public function display_conditions_settings_callback():void {
+	public function display_conditions_settings_callback(): void {
 		printf(
 			'<p>%s</p>',
-			__(
+			esc_html__(
 				'This section controls the Display Settings for the popup.<br/> Add the pages where you want the popup to appear.<br/> If left empty the default condition is all pages.',
 				'woosupercharge'
 			)
@@ -127,10 +127,10 @@ class Settings {
 
 	/**
 	 * Settings options to register.
-	 * 
+	 *
 	 * @since 2.0
 	 */
-	public function get_settings_fields():array {
+	public function get_settings_fields(): array {
 		$settings_fields = array(
 			'cart_general_settings'            => array(
 				'layout'            => array(
@@ -168,9 +168,9 @@ class Settings {
 	/**
 	 * Add settings sections.
 	 */
-	public function add_settings_sections():void {
+	public function add_settings_sections(): void {
 		$settings_sections = $this->get_settings_sections();
-		// Adds the settings sections
+		// Adds the settings sections.
 		foreach ( $settings_sections as $section ) {
 			add_settings_section( $section['id'], $section['title'], $section['callback'], $section['page'], $section['args'] );
 		}
@@ -179,9 +179,9 @@ class Settings {
 	/**
 	 * Add setting fields.
 	 */
-	public function add_settings_fields():void {
+	public function add_settings_fields(): void {
 		$settings_fields = $this->get_settings_fields();
-		// Adds the settings fields
+		// Adds the settings fields.
 		foreach ( $settings_fields as $section => $setting ) {
 
 			foreach ( $setting as $name => $field ) {
@@ -195,7 +195,7 @@ class Settings {
 					'option_name' => self::OPTION_NAME,
 				);
 				$callback = array( Helpers::class, 'callback_' . $field['type'] );
-				if( is_callable( $callback ) ) {
+				if ( is_callable( $callback ) ) {
 					add_settings_field( $name, $field['label'], $callback, 'woosupercharge-settings', $section, $args );
 				}
 			}
@@ -207,7 +207,7 @@ class Settings {
 	 *
 	 * @uses "admin_init" action
 	 */
-	public function do_settings():void {
+	public function do_settings(): void {
 
 		register_setting(
 			self::OPTION_GROUP,

@@ -1,7 +1,13 @@
 <?php
-namespace JawadMalik\Woosupercharge;
+/**
+ * Class JawadMalik\Woosupercharge\Helpers
+ *
+ * @since 2.0
+ *
+ * @package woosupercharge
+ */
 
-use phpDocumentor\Reflection\Types\Boolean;
+namespace JawadMalik\Woosupercharge;
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
@@ -57,7 +63,7 @@ class Helpers {
 	 *
 	 * @param array<mixed> $args An array of arguments for rendering the field.
 	 */
-	public static function callback_layout_select( $args ):void {
+	public static function callback_layout_select( $args ): void {
 
 		$value = $args['value'];
 		$name  = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
@@ -66,16 +72,17 @@ class Helpers {
 				<div class="image-select">
 					<label for="card">
 						<input type="radio" id="card" name=<?php echo esc_attr( $name ); ?> value="card" <?php checked( $value, 'card' ); ?> >
-						<img src='<?php echo WOOSUPERCHARGE_PLUGIN_URL . 'assets/images/card.svg'; ?>' alt="Card Layout">
+						<img src='<?php echo esc_url( WOOSUPERCHARGE_PLUGIN_URL . 'assets/images/card.svg' ); ?>' alt="Card Layout">
 					</label>
 
 					<label for="list">
 						<input type="radio" id="list" name=<?php echo esc_attr( $name ); ?> value="list" <?php checked( $value, 'list' ); ?>>
-						<img src='<?php echo WOOSUPERCHARGE_PLUGIN_URL . 'assets/images/list.svg'; ?>' alt="List Layout">
+						<img src='<?php echo esc_url( WOOSUPERCHARGE_PLUGIN_URL . 'assets/images/list.svg' ); ?>' alt="List Layout">
 					</label>
 				</div>
 			<?php
 
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo ob_get_clean();
 	}
 
@@ -84,7 +91,7 @@ class Helpers {
 	 *
 	 * @param array<mixed> $args An array of arguments for rendering the field.
 	 */
-	public static function callback_position_select( $args ):void {
+	public static function callback_position_select( $args ): void {
 
 		$value = $args['value'];
 
@@ -98,7 +105,7 @@ class Helpers {
 					<input type="radio" id="positionBottom" name=<?php echo esc_attr( $name ); ?> value="bottom">
 				</div>
 			<?php
-
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo ob_get_clean();
 	}
 
@@ -107,7 +114,7 @@ class Helpers {
 	 *
 	 * @param array<mixed> $args An array of arguments for rendering the field.
 	 */
-	public static function callback_slider( $args ):void {
+	public static function callback_slider( $args ): void {
 		$value = $args['value'];
 		$name  = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
 		ob_start();
@@ -117,7 +124,7 @@ class Helpers {
 				<input name="<?php echo esc_attr( $name ); ?>" type="number" id="sliderValue" value=<?php echo esc_attr( $value ); ?> min="1" max="60">
 			</div>
 		<?php
-
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo ob_get_clean();
 	}
 
@@ -126,7 +133,7 @@ class Helpers {
 	 *
 	 * @param array<mixed> $args An array of arguments for rendering the field.
 	 */
-	public static function callback_conditions_repeater( $args ):void {
+	public static function callback_conditions_repeater( $args ): void {
 		$html  = '';
 		$count = 0;
 		$html .= '<table id="woosupercharge-conditions-table">
@@ -140,7 +147,7 @@ class Helpers {
 
 			foreach ( $args['options'] as $key => $value ) {
 
-				$selected = ( $key == $current_value ) ? 'selected' : '';
+				$selected = ( $key === $current_value ) ? 'selected' : '';
 				$html    .= sprintf( '<option value="%s" %s>%s</option>', $key, $selected, $value );
 
 			}
@@ -153,7 +160,7 @@ class Helpers {
 		}
 
 		$html .= '</tbody></table><button type="button" class="button woosupercharge-add-condition">' . esc_html__( 'Add Display Condition', 'woosupercharge' ) . '</button>';
-
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $html;
 	}
 
@@ -225,13 +232,13 @@ class Helpers {
 	 *
 	 * @since 2.0
 	 */
-	public static function is_woocommerce_active():bool {
+	public static function is_woocommerce_active(): bool {
 		$active_plugins = (array) get_option( 'active_plugins', array() );
 		if ( is_multisite() ) {
 			$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
 		}
 
-		if ( in_array( 'woocommerce/woocommerce.php', $active_plugins ) || array_key_exists( 'woocommerce/woocommerce.php', $active_plugins ) || class_exists( 'WooCommerce' ) ) {
+		if ( in_array( 'woocommerce/woocommerce.php', $active_plugins, true ) || array_key_exists( 'woocommerce/woocommerce.php', $active_plugins ) || class_exists( 'WooCommerce' ) ) {
 			return true;
 		} else {
 			return false;
@@ -249,6 +256,5 @@ class Helpers {
 		if ( $value === $current ) {
 			echo 'class="active"';
 		}
-		return;
 	}
 }

@@ -90,7 +90,7 @@ class Settings_Page extends Abstract_Admin_Page {
 	 *
 	 * @since 2.0
 	 */
-	public function add_page():void {
+	public function add_page(): void {
 		add_menu_page(
 			$this->title(),
 			'WooSupercharge',
