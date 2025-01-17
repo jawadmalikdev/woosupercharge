@@ -20,7 +20,7 @@ class Hooks {
 	/**
 	 * Main plugin object.
 	 *
-	 * @var Plugin
+	 * @var Woosupercharge $plugin.
 	 */
 	protected $plugin;
 
