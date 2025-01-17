@@ -35,23 +35,23 @@ class Helpers {
 			$conditions_array[ $condition ] = $condition;
 		}
 
-		if ( isset( $display_conditions['all'] ) ) {
+		if ( isset( $conditions_array['all'] ) ) {
 			return true;
 		}
 
-		if ( isset( $display_conditions['archive'] ) && function_exists( 'is_shop' ) && is_shop() ) {
+		if ( isset( $conditions_array['archive'] ) && function_exists( 'is_shop' ) && is_shop() ) {
 			return true;
 		}
-		if ( isset( $display_conditions['categories-archive'] ) && is_tax( 'product_cat' ) ) {
+		if ( isset( $conditions_array['categories-archive'] ) && is_tax( 'product_cat' ) ) {
 			return true;
 		}
-		if ( isset( $display_conditions['tags-archive'] ) && is_tax( 'product_tag' ) ) {
+		if ( isset( $conditions_array['tags-archive'] ) && is_tax( 'product_tag' ) ) {
 			return true;
 		}
-		if ( isset( $display_conditions['product-attributes-archive'] ) && is_tax( 'product_attribute' ) ) {
+		if ( isset( $conditions_array['product-attributes-archive'] ) && is_tax( 'product_attribute' ) ) {
 			return true;
 		}
-		if ( isset( $display_conditions['single'] ) && is_singular( 'product' ) ) {
+		if ( isset( $conditions_array['single'] ) && is_singular( 'product' ) ) {
 			return true;
 		}
 
@@ -98,15 +98,15 @@ class Helpers {
 		$name = $args['option_name'] . '[' . $args['section'] . '][' . $args['name'] . ']';
 		ob_start();
 		?>
-				<div class="position-select-container" id="positionSelect">
-					<label for="positionTop" <?php self::active( $value, 'top' ); ?> ><?php esc_html__( 'Top', 'woosupercharge' ); ?></label>
-					<input type="radio" id="positionTop" name=<?php echo esc_attr( $name ); ?> value="top">
-					<label for="positionBottom" <?php self::active( $value, 'bottom' ); ?> ><?php esc_html__( 'Bottom', 'woosupercharge' ); ?></label>
-					<input type="radio" id="positionBottom" name=<?php echo esc_attr( $name ); ?> value="bottom">
-				</div>
-			<?php
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo ob_get_clean();
+			<div class="position-select-container" id="positionSelect">
+				<label for="positionTop" <?php self::active( $value, 'top' ); ?> ><?php esc_html_e( 'Top', 'woosupercharge' ); ?></label>
+				<input type="radio" id="positionTop" name=<?php echo esc_attr( $name ); ?> value="top">
+				<label for="positionBottom" <?php self::active( $value, 'bottom' ); ?> ><?php esc_html_e( 'Bottom', 'woosupercharge' ); ?></label>
+				<input type="radio" id="positionBottom" name=<?php echo esc_attr( $name ); ?> value="bottom">
+			</div>
+		<?php
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo ob_get_clean();
 	}
 
 	/**
