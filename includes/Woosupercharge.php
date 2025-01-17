@@ -100,7 +100,7 @@ class Woosupercharge {
 	 *
 	 * @return Classic_Cart|Block_Cart
 	 */
-	public function get_cart(): Classic_Cart|Block_Cart {
+	public function get_cart() {
 		return $this->cart;
 	}
 

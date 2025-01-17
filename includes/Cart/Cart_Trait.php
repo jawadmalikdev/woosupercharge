@@ -104,7 +104,7 @@ trait Cart_Trait {
 	 *
 	 * @return string The HTML markup of the cart content.
 	 */
-	public function get_cart_content(): string|bool {
+	public function get_cart_content() {
 
 		// Get last cart item entry.
 		$cart_item_key = get_option( 'woosupercharge_last_added_cart_key' );
